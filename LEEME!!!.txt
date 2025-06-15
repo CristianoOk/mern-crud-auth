@@ -1,0 +1,86 @@
+TANTO FRONTEND COMO BACKEND, SE INICIAN EN EL TERMINAL (ACCEDIENDO A A LA CARPETA CLIENT PRIMERO, EN EL CASO DEL FRONTEND) EJECUTANDO "npm run dev". PARA EL FRONT ES ASÍ PORQUE USÉ VIT PARA CREAR LA APP REACT, Y PARA EL BACK PORQUE HICE UNA CONFIGURACIÓN EN SU ARCHIVO "package.json" (QUE PODES VER MÁS A DETALLE DICHO CAMBIO, LEYENDO LA PARTE DE ESTE ARCHIVO DESTINADO AL BACKEND).
+
+
+
+
+
+Lo primero que hice fue crear la carpeta  "src", después abrí la terminal y ejecuté "npm init -y". Con esto instalé el archivo "package.json".
+Luego instalé las dependencias: "npm i express".
+
+
+Lo primero que hice en "app.js" fué: 
+###
+import express from 'express';
+
+const app = express(); //"express()", así inicializo 'express'; y una vez inicializado esto nos devuelve un objeto, el cual guardo en "const app". El "app" ahora es básicamente el 'servidor'.
+
+app.listen(3000) //Como dije que "app" es el 'servidor => ahora le estoy diciendo a dicho 'servidor' que escuche en el puerto "3000"
+console.log('Server on port', 3000) //Y ahora le digo que me muestre el mensaje '"Server on port" "3000"'.
+###
+PERO, cuando quice ejecutarlo en la console/terminal con "node src/app.js" (o sea, le dije: "node", quiero que entres en la carpeta "src" y ejecutes el archivo "app.js"). El error se debe a que 'node' no entiende los 'export' e 'import' por defecto. => para decirle que utilice la syntasis "import express from 'express';", en lugar del típico "require" de 'node', lo que hice fue ir al archivo "./package.json" y agregué ""type": "module",", lo puse abajo de ""main": "index.js",". Y ahora si funciona!.
+
+
+
+Instalé 'nodemon' en la terminal ejecutando "npm i nodemon -D". Sirve para que se actualice solo el servidor (algo así como 'react', que a medida que modificás tu código se ven reflejados en tu browser) y no tengas que parar y volver a iniciar, por ejemplo, 'node index.js' para que se reflejen los cambios que hiciste en tu código.
+En "./package.json" estaba: 
+###
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+###
+
+pero lo cambié por:
+###
+"scripts": {
+    "dev": "nodemon src/index.js"
+  },
+###
+
+Si te  dás cuenta cree un comando llamado "dev" y le asigné ""nodemon src/index,js", básicamente le digo que "dev" es lo mismo que escribir "nodemon src/index.js". Esto ya que instalé 'nodemon", si no hubiese creado este comando cada vez que quiera iniciar el backEnd tendría que poner "nodemon src/index.js"; ahora basta con escribir en la terminal "npm run dev".
+
+
+Intalé en el terminal el módulo 'morgan' con "npm i morgan". Es un paquete que nos permite ver por consola las peticiones que van llegando
+
+
+Instalé en el terminal "npm i mongoose", es un módulo que nos permite conectarnos a 'Mongodb' y también modelar los datos; es decir, decirle a 'mongodb' que valide antes de que lleguen o antes de que guarde los datos.
+
+
+En la terminal enstalé el módulo "npm i bcryptjs", sirve para encriptar la contraseña!!!
+
+Instalé "npm i jsonwebtoken", para crear tokens. Q son como 'pases', tipo, el usuario me tiene que presentar dicho 'pase' para saber que está logeado y dejarlo acceder.
+
+
+Instalé "npm i cookie-parser". Lo que hace es permitirnos añadir un middleware, que nos permitirá cada vez que haya una cookie convertirla a un objeto .json. Es algo así como un "exp.json()", pero para las 'cookies'.
+
+
+Intalé "npm i zod", que es un módulo que prácticamente permite crear una especie de esquema similar al de 'mongoos'.Los usamos para validar datos, por ejemplo, si el user no ingresa nada en password y presiona para ingresar => este esquema (schema) se fija en dicho esquemay si está estipulado que se debe ingresar un password, entre otras cosas, => no deja avanzar y le muestra un mensaje, por ejemplo, 'Password is needed'.
+
+
+'CORS', es una política de seguridad que tienen los navegadores que permite solicitudes a un mismo dominio. Y como en el frontEnd mi domino es "http://localhost:4000/api/register", por ejemplo, y en mi backEnd "http://localhost:5173" => 'CORS' bloquea la comunicación entre frontEnd y backEnd. Por tal motivo instalé en el terminal (terminal del backEnd) "npm i cors", luego uso este módulo que permite configurar cors facilmente en app.js (del backEnd).
+
+
+
+### FRONTEND ###:
+Cree la app de react con 'vite', ejecutando en el terminal "npm create vite".
+
+
+Para los estilos usé la biblioteca 'tailwind'. La instalé con "npm i -D tailwindcss postcss autoprefixer", después tuve que ejecutar (todo esto según la documentación oficial de la biblioteca) "npx tailwindcss init -p" (esto me creó dos archivos: "postcss.confing.js" y "tailwind.confing.js", en los cuales hice modificaciones).
+
+Instalé "npm i react-router-dom", para manejar las rutas.
+
+Tuve que instalar "npm i react-hook-form".
+
+Instalé en el terminal "npm i axios".
+
+
+Instalé la biblioteca "npm i js-cookie", permite leer las cookies desde el frontEnd.
+
+
+Instalé en el terminal "npm i dayjs", esta biblioteca sirve para formatear el tipo de fecha (que ingresa el user, o sea, que el frontEnd envía al backEnd) al tipo que recibe el backEnd.
+
+
+
+
+
+
+LINK TUTORIA YT: "https://www.youtube.com/watch?v=NmkY4JgS21A"
